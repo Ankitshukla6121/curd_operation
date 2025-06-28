@@ -6,11 +6,11 @@ const App = () => {
   const [form, setForm] = useState({ name: '', description: '' });
 
   useEffect(() => {
-    axios.get('http://localhost:8080/items').then((res) => setItems(res.data));
+    axios.get('https://curd-operation-rp5p.onrender.com/items').then((res) => setItems(res.data));
   }, []);
 
   const createItem = () => {
-    axios.post('http://localhost:8080/item', form).then((res) => {
+    axios.post('https://curd-operation-rp5p.onrender.com/item', form).then((res) => {
       setItems([...items, res.data]);
       setForm({ name: '', description: '' });
     });
@@ -22,7 +22,7 @@ const App = () => {
   if (!updatedName) return alert("Name cannot be empty!");
 
   axios
-    .put(`http://localhost:8080/item/${id}`, { name: updatedName })
+    .put(`https://curd-operation-rp5p.onrender.com/item/${id}`, { name: updatedName })
     .then((res) => {
       setItems(items.map((item) => (item._id === id ? res.data : item)));
     })
@@ -30,7 +30,7 @@ const App = () => {
 };
 
   const deleteItem = (id) => {
-    axios.delete(`http://localhost:8080/item/${id}`).then(() => {
+    axios.delete(`https://curd-operation-rp5p.onrender.com/item/${id}`).then(() => {
       setItems(items.filter((item) => item._id !== id));
     });
   };
